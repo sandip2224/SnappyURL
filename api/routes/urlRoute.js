@@ -13,7 +13,6 @@ const errormsg = (err) => {
     })
 }
 
-
 router.post('/shorten', async (req, res)=>{
     const {longUrl}=req.body
 
@@ -46,7 +45,7 @@ router.post('/shorten', async (req, res)=>{
             shortUrl
         })
         await newUrl.save()
-        res.status(200).json({
+        res.status(201).json({
             message: 'URL shortened successfully!!',
             newUrl:{
                 shortUrl,
@@ -58,6 +57,23 @@ router.post('/shorten', async (req, res)=>{
         errormsg(err)
     }
 })
+
+/**
+ * @swagger
+ * /{slug}:
+ *   get: 
+ *    description: Redirects to the expanded original URL
+ *    parameters:
+ *     - in: path
+ *       name: slug
+ *       required: true
+ *       description: The shortened URL slug for your original URL
+ *    responses:
+ *     '200':
+ *      description: A successful URL redirect!
+ *     '404':
+ *      description: URL not found!
+ */
 
 router.get('/:slug', async (req, res)=>{
     try{
