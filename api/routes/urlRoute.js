@@ -13,6 +13,26 @@ const errormsg = (err) => {
     })
 }
 
+/**
+ * @swagger
+ * /shorten:
+ *   post:
+ *     description: Generate a new shortened URL
+ *     parameters:
+ *      - name: longUrl
+ *        description: Original URL to be shortened
+ *        in: body
+ *        required: true
+ *        type: string
+ *     responses:
+ *      201: 
+ *       description: Created new short URL successfully!
+ *      200:
+ *       description: URL already exists in database!
+ *      400:
+ *       description: Invalid URL syntax!
+ */
+
 router.post('/shorten', async (req, res)=>{
     const {longUrl}=req.body
 
