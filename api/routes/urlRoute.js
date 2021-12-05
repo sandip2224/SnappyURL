@@ -15,7 +15,7 @@ const errormsg = (err) => {
 
 
 router.post('/shorten', async (req, res)=>{
-    const longUrl=req.body.longUrl
+    const {longUrl}=req.body
 
     if(!validUrl.isUri(baseUrl)){
         return res.status(400).json({
